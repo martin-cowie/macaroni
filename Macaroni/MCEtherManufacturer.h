@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface MCEtherManufacturer : NSObject
+-(id)initWithBytes:(NSData*)bytes manufacturer:(NSString*)name description:(NSString*)description;
 
 +(MCEtherManufacturer*) findManufacturer:(NSData*)macAddress;
 
