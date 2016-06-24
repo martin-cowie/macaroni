@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC21E0E21D19FCB300F73543 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC21E0E11D19FCB300F73543 /* main.m */; };
-		AC21E0E91D19FE6400F73543 /* MCEtherManufacturer.h in Sources */ = {isa = PBXBuildFile; fileRef = ACBC770E1C976A7600BBCE18 /* MCEtherManufacturer.h */; };
-		AC21E0EA1D19FE6400F73543 /* MCEtherManufacturer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC770F1C976A7600BBCE18 /* MCEtherManufacturer.m */; };
+		AC00055B1D1DE2390051E07B /* manuf.txt in Resources */ = {isa = PBXBuildFile; fileRef = AC00055A1D1DE2390051E07B /* manuf.txt */; };
 		ACBC76F41C976A4300BBCE18 /* Macaroni.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC76F31C976A4300BBCE18 /* Macaroni.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACBC76FB1C976A4400BBCE18 /* Macaroni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC76F01C976A4300BBCE18 /* Macaroni.framework */; };
 		ACBC77001C976A4400BBCE18 /* MacaroniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC76FF1C976A4400BBCE18 /* MacaroniTests.m */; };
@@ -25,13 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AC21E0E61D19FCD900F73543 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACBC76E71C976A4300BBCE18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC21E0DE1D19FCB300F73543;
-			remoteInfo = "Macaroni Compiler";
-		};
 		ACBC76FC1C976A4400BBCE18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ACBC76E71C976A4300BBCE18 /* Project object */;
@@ -41,22 +32,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		AC21E0DD1D19FCB300F73543 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		AC21E0DF1D19FCB300F73543 /* Macaroni Compiler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Macaroni Compiler"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC21E0E11D19FCB300F73543 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AC21E0E81D19FDFC00F73543 /* manuf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manuf.txt; sourceTree = "<group>"; };
+		AC00055A1D1DE2390051E07B /* manuf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manuf.txt; sourceTree = "<group>"; };
 		ACBC76F01C976A4300BBCE18 /* Macaroni.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Macaroni.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBC76F31C976A4300BBCE18 /* Macaroni.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macaroni.h; sourceTree = "<group>"; };
 		ACBC76F51C976A4400BBCE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,13 +52,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AC21E0DC1D19FCB300F73543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		ACBC76EC1C976A4300BBCE18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,21 +70,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC21E0E01D19FCB300F73543 /* Macaroni Compiler */ = {
-			isa = PBXGroup;
-			children = (
-				AC21E0E81D19FDFC00F73543 /* manuf.txt */,
-				AC21E0E11D19FCB300F73543 /* main.m */,
-			);
-			path = "Macaroni Compiler";
-			sourceTree = "<group>";
-		};
 		ACBC76E61C976A4300BBCE18 = {
 			isa = PBXGroup;
 			children = (
 				ACBC76F21C976A4300BBCE18 /* Macaroni */,
 				ACBC76FE1C976A4400BBCE18 /* MacaroniTests */,
-				AC21E0E01D19FCB300F73543 /* Macaroni Compiler */,
 				ACBC76F11C976A4300BBCE18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,7 +84,6 @@
 			children = (
 				ACBC76F01C976A4300BBCE18 /* Macaroni.framework */,
 				ACBC76FA1C976A4400BBCE18 /* MacaroniTests.xctest */,
-				AC21E0DF1D19FCB300F73543 /* Macaroni Compiler */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,6 +91,7 @@
 		ACBC76F21C976A4300BBCE18 /* Macaroni */ = {
 			isa = PBXGroup;
 			children = (
+				AC00055A1D1DE2390051E07B /* manuf.txt */,
 				ACBC770B1C976A7600BBCE18 /* MCCacheEntry.h */,
 				ACBC770C1C976A7600BBCE18 /* MCCacheEntry.m */,
 				ACBC770D1C976A7600BBCE18 /* MCCommon.h */,
@@ -175,27 +135,11 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AC21E0DE1D19FCB300F73543 /* Macaroni Compiler */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AC21E0E51D19FCB300F73543 /* Build configuration list for PBXNativeTarget "Macaroni Compiler" */;
-			buildPhases = (
-				AC21E0DB1D19FCB300F73543 /* Sources */,
-				AC21E0DC1D19FCB300F73543 /* Frameworks */,
-				AC21E0DD1D19FCB300F73543 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Macaroni Compiler";
-			productName = "Macaroni Compiler";
-			productReference = AC21E0DF1D19FCB300F73543 /* Macaroni Compiler */;
-			productType = "com.apple.product-type.tool";
-		};
 		ACBC76EF1C976A4300BBCE18 /* Macaroni */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACBC77041C976A4400BBCE18 /* Build configuration list for PBXNativeTarget "Macaroni" */;
 			buildPhases = (
+				AC00055C1D1DE7E20051E07B /* ShellScript */,
 				ACBC76EB1C976A4300BBCE18 /* Sources */,
 				ACBC76EC1C976A4300BBCE18 /* Frameworks */,
 				ACBC76ED1C976A4300BBCE18 /* Headers */,
@@ -204,7 +148,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				AC21E0E71D19FCD900F73543 /* PBXTargetDependency */,
 			);
 			name = Macaroni;
 			productName = Macaroni;
@@ -238,9 +181,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = ACME;
 				TargetAttributes = {
-					AC21E0DE1D19FCB300F73543 = {
-						CreatedOnToolsVersion = 7.3;
-					};
 					ACBC76EF1C976A4300BBCE18 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
@@ -263,7 +203,6 @@
 			targets = (
 				ACBC76EF1C976A4300BBCE18 /* Macaroni */,
 				ACBC76F91C976A4400BBCE18 /* MacaroniTests */,
-				AC21E0DE1D19FCB300F73543 /* Macaroni Compiler */,
 			);
 		};
 /* End PBXProject section */
@@ -273,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC00055B1D1DE2390051E07B /* manuf.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,17 +225,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		AC21E0DB1D19FCB300F73543 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		AC00055C1D1DE7E20051E07B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC21E0E91D19FE6400F73543 /* MCEtherManufacturer.h in Sources */,
-				AC21E0EA1D19FE6400F73543 /* MCEtherManufacturer.m in Sources */,
-				AC21E0E21D19FCB300F73543 /* main.m in Sources */,
+			);
+			inputPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pwd;\ncd Macaroni\n./codegen.pl manuf.txt > manuf.m";
 		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		ACBC76EB1C976A4300BBCE18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,11 +264,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AC21E0E71D19FCD900F73543 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AC21E0DE1D19FCB300F73543 /* Macaroni Compiler */;
-			targetProxy = AC21E0E61D19FCD900F73543 /* PBXContainerItemProxy */;
-		};
 		ACBC76FD1C976A4400BBCE18 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ACBC76EF1C976A4300BBCE18 /* Macaroni */;
@@ -331,22 +272,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		AC21E0E31D19FCB300F73543 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		AC21E0E41D19FCB300F73543 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		ACBC77021C976A4400BBCE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -493,14 +418,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AC21E0E51D19FCB300F73543 /* Build configuration list for PBXNativeTarget "Macaroni Compiler" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AC21E0E31D19FCB300F73543 /* Debug */,
-				AC21E0E41D19FCB300F73543 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		ACBC76EA1C976A4300BBCE18 /* Build configuration list for PBXProject "Macaroni" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
