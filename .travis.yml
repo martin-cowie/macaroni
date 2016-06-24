@@ -1,4 +1,4 @@
 language: objective-c
 xcode_project: Macaroni.xcodeproj
-xcode_scheme: MacaroniTests
+xcode_scheme: Macaroni
 osx_image: xcode7.3
