@@ -139,7 +139,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACBC77041C976A4400BBCE18 /* Build configuration list for PBXNativeTarget "Macaroni" */;
 			buildPhases = (
-				AC00055C1D1DE7E20051E07B /* ShellScript */,
+				AC00055C1D1DE7E20051E07B /* Generate MAC address table */,
 				ACBC76EB1C976A4300BBCE18 /* Sources */,
 				ACBC76EC1C976A4300BBCE18 /* Frameworks */,
 				ACBC76ED1C976A4300BBCE18 /* Headers */,
@@ -226,13 +226,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AC00055C1D1DE7E20051E07B /* ShellScript */ = {
+		AC00055C1D1DE7E20051E07B /* Generate MAC address table */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Generate MAC address table";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
