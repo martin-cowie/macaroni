@@ -7,7 +7,6 @@
 //
 
 #import "MCEtherManufacturer.h"
-#import "MCCommon.h"
 
 static NSMutableDictionary<NSData*, MCEtherManufacturer*> *manufacturerTable = nil;
 

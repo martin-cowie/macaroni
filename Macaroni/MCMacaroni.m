@@ -31,12 +31,13 @@
 #include <string.h>
 #include <unistd.h>
 
-#import "MCCommon.h"
 #import "MCMacaroni.h"
 #import "MCCacheEntry.h"
 #import "MCEtherManufacturer.h"
 
 #import "NSData+MACAddress.h"
+
+#define ARRAY_LEN(A) (sizeof(A)/sizeof(A[0]))
 
 int mib[6] = {CTL_NET, PF_ROUTE, 0, AF_INET, NET_RT_FLAGS, RTF_LLINFO};
 

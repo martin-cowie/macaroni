@@ -13,7 +13,6 @@
 		ACBC77001C976A4400BBCE18 /* MacaroniTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC76FF1C976A4400BBCE18 /* MacaroniTests.m */; };
 		ACBC77151C976A7600BBCE18 /* MCCacheEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC770B1C976A7600BBCE18 /* MCCacheEntry.h */; };
 		ACBC77161C976A7600BBCE18 /* MCCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC770C1C976A7600BBCE18 /* MCCacheEntry.m */; };
-		ACBC77171C976A7600BBCE18 /* MCCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC770D1C976A7600BBCE18 /* MCCommon.h */; };
 		ACBC77181C976A7600BBCE18 /* MCEtherManufacturer.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC770E1C976A7600BBCE18 /* MCEtherManufacturer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACBC77191C976A7600BBCE18 /* MCEtherManufacturer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC770F1C976A7600BBCE18 /* MCEtherManufacturer.m */; };
 		ACBC771A1C976A7600BBCE18 /* MCMacaroni.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC77101C976A7600BBCE18 /* MCMacaroni.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,7 +41,6 @@
 		ACBC77011C976A4400BBCE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACBC770B1C976A7600BBCE18 /* MCCacheEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCacheEntry.h; sourceTree = "<group>"; };
 		ACBC770C1C976A7600BBCE18 /* MCCacheEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCCacheEntry.m; sourceTree = "<group>"; };
-		ACBC770D1C976A7600BBCE18 /* MCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCommon.h; sourceTree = "<group>"; };
 		ACBC770E1C976A7600BBCE18 /* MCEtherManufacturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCEtherManufacturer.h; sourceTree = "<group>"; };
 		ACBC770F1C976A7600BBCE18 /* MCEtherManufacturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCEtherManufacturer.m; sourceTree = "<group>"; };
 		ACBC77101C976A7600BBCE18 /* MCMacaroni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMacaroni.h; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				AC00055A1D1DE2390051E07B /* manuf.txt */,
 				ACBC770B1C976A7600BBCE18 /* MCCacheEntry.h */,
 				ACBC770C1C976A7600BBCE18 /* MCCacheEntry.m */,
-				ACBC770D1C976A7600BBCE18 /* MCCommon.h */,
 				ACBC770E1C976A7600BBCE18 /* MCEtherManufacturer.h */,
 				ACBC770F1C976A7600BBCE18 /* MCEtherManufacturer.m */,
 				ACBC77101C976A7600BBCE18 /* MCMacaroni.h */,
@@ -127,7 +124,6 @@
 				ACBC771C1C976A7600BBCE18 /* NSData+MACAddress.h in Headers */,
 				ACBC77181C976A7600BBCE18 /* MCEtherManufacturer.h in Headers */,
 				ACBC77151C976A7600BBCE18 /* MCCacheEntry.h in Headers */,
-				ACBC77171C976A7600BBCE18 /* MCCommon.h in Headers */,
 				ACBC76F41C976A4300BBCE18 /* Macaroni.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
