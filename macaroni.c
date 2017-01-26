@@ -28,8 +28,6 @@ const char *renderMac(unsigned char *macBytes, unsigned char macLength, char *bu
 	return buff;
 }
 
-typedef void (*node_func_t)(const leaf_node_t *leaf, unsigned char *mac, unsigned char macLen);
-
 void print_leaf(const leaf_node_t *leaf, unsigned char *mac, unsigned char macLen) {
 	char macStr[macLen*3];
 	renderMac(mac, macLen, macStr, 40);
