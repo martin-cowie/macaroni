@@ -32,7 +32,7 @@ typedef struct PACK {
 
 /* Type node */
 typedef struct PACK type_node_t {
-	enum {index, contiguous, leaf} node_type;
+	enum {index_map, contiguous, leaf} node_type;
 	union {
 		index_node_t index_node;
 		contiguous_node_t contiguous_node;

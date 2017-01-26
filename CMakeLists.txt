@@ -4,7 +4,7 @@ include(CTest)
 
 add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-	COMMANDC ./codegen-c.pl ./Macaroni/manuf.txt > ${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
+	COMMAND ./codegen-c.pl ./Macaroni/manuf.txt > ${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
 	OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
 )
 

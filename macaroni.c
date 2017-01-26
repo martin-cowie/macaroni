@@ -48,7 +48,7 @@ int macwalk(const type_node_t *node, node_func_t node_func, unsigned char *path,
             node_func(&node->value.leaf_node, path, pathLen);
             return result+1;
 
-        case index:
+        case index_map:
             for(int i=0; i< node->value.index_node.last_index +1; i++) {
                 const index_elem_t *indexElem = node->value.index_node.table + i;
                 BUILD_MAC(newPath, path, pathLen, indexElem->index);
@@ -94,7 +94,7 @@ _macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigne
             }
             return &node->value.leaf_node;
 
-        case index: {
+        case index_map: {
             const unsigned char macByte = macBytes[0];
             const index_node_t *index_node = &node->value.index_node;
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl
 use strict;
 use Getopt::Std;
 use Term::ANSIColor 2.00 qw(:pushpop);
@@ -123,7 +123,7 @@ FIN
 
 			print <<FIN;
 static const type_node_t node_$nodeNumber = {
-	.node_type = index, 
+	.node_type = index_map, 
 	.value = {
 		.index_node = {
 			.last_index = $lastIndex,
