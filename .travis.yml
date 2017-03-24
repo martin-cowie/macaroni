@@ -2,8 +2,12 @@ language: C
 compiler:
   - gcc
 before_script:
+  - ./setup-travis.sh
+  - sudo apt-get update -qq
+  - sudo apt-get install cmake
   - mkdir build
   - cd build
   - cmake ..
 script:
   - make clean all test
+sudo: required
