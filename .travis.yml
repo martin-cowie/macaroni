@@ -1,6 +1,6 @@
 language: C
 compiler:
-  - cc
+  - gcc
 before_script:
   - mkdir build
   - cd build
