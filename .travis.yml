@@ -2,7 +2,7 @@ language: C
 compiler:
   - gcc
 before_script:
-  - ./setup-travis.sh
+  - sh ./setup-travis.sh
   - sudo apt-get update -qq
   - sudo apt-get install cmake
   - mkdir build
