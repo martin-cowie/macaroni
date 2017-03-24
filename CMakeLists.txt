@@ -1,16 +1,17 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 2.8.7)
 project (Macaroni)
 include(CTest)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-	COMMAND ./codegen-c.pl ./Macaroni/manuf.txt > mac_tree.c
-	OUTPUT mac_tree.c
+	COMMAND ./codegen-c.pl ./Macaroni/manuf.txt > ${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
+	OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
 )
 
 add_library(macaroni SHARED
 	macaroni.c 
-	${CMAKE_CURRENT_SOURCE_DIR}/mac_tree.c
+	${CMAKE_CURRENT_BINARY_DIR}/mac_tree.c
 )
 set_property(TARGET macaroni PROPERTY C_STANDARD 99)
 
