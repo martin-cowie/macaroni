@@ -31,11 +31,12 @@ http://standards.ieee.org/develop/regauth/iab/iab.txt
 http://standards.ieee.org/develop/regauth/oui28/oui28.txt
 http://standards.ieee.org/develop/regauth/oui36/oui36.txt
 
-CSV edutions available for many.
+CSV editions available for many.
 
 =cut
 
 use strict;
+use warnings;
 
 sub new {
 	my ($class, $fh) = @_;
@@ -74,12 +75,15 @@ sub parse {
 			my @parts = split /\#/, $descriptions, 2;
 			my($description, $longDescription) = (trim($parts[0]), trim($parts[1]));
 			my @macBytes = split /[-:]/, $macStr;
+
+			# Trim MACPrefix by the qualifier, e.g. a qualifier of 16 will get you only bytes 1 and 2 of @macBytes
+			@macBytes = splice(@macBytes, 0, calcBytesForBits($qualifier)) if ($qualifier);
+
 			my $macMask = $qualifier ? $qualifier : (8 * scalar(@macBytes));
 
 			my $record = {
-				# Two description fields
-				description => $description,
-				longDescription => $longDescription,
+				# The description field
+				description => ($longDescription ? $longDescription : $description),
 
 				# The hex bytes indentifying the manufacturer
 				MACPrefix => \@macBytes,
@@ -88,7 +92,10 @@ sub parse {
 				MACMask => $macMask,
 
 				# The line number where this record was parsed
-				lineNumber => $lineNumber
+				lineNumber => $lineNumber,
+
+				# A human readable description of the mapping
+				mapping => $line
 			};
 			push @result, $record;
 		 	next;
@@ -97,6 +104,11 @@ sub parse {
 		die "Cannot parse: $_\n";
 	}
 	return @result;
+}
+
+sub calcBytesForBits {
+	my($qualifier) = @_;
+	return ($qualifier >> 3) + ($qualifier % 8 ? 1 : 0);	
 }
 
 1; 

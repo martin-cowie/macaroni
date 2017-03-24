@@ -7,7 +7,7 @@ use warnings;
 	my $nodeNumber = 0;
 
 	sub new {
-		my ($class, $record) = @_;
+		my ($class) = @_;
 		my $self = bless {
 			nodeNumber => $nodeNumber++
 		}, $class;
@@ -37,9 +37,14 @@ use warnings;
 		return $self->{branches};
 	}
 
+	sub hasBranches {
+		my $self = shift;
+		return 0 < keys %{$self->{branches}}
+	}
+
 	sub insert {
 		my ($self, $leafNode) = @_;
-		$self->_insert($leafNode->branchValues(), $leafNode);
+		$self->_insert($leafNode->MACPrefix, $leafNode);
 	}
 
 	sub _insert {
@@ -53,10 +58,7 @@ use warnings;
 			if (exists $self->{branches}->{$byte}) {
 				# Recurse into existing branch
 				my $branch = $self->{branches}->{$byte};
-
-				if (ref $branch eq "BranchNode") {
-					$branch->_insert($bytes, $node)
-				}
+				$branch->_insert($bytes, $node)
 			} else {
 				# Create a BranchNode under here, and recurse down $bytes.
 				my $newBranch = new BranchNode();
@@ -82,14 +84,14 @@ use warnings;
 
 {
 	package LeafNode;
-	@LeafNode::ISA = qw(Node);
+	@LeafNode::ISA = qw(BranchNode);
 
 	sub new {
-		my ($class, $record, $branchValues) = @_;
+		my ($class, $record) = @_;
 		my $self = $class->SUPER::new();
 
 		$self->{record} = $record;
-		$self->{branchValues} = $branchValues;
+		$self->{MACPrefix} = $record->{MACPrefix};
 		return bless($self, $class);
 	}
 
@@ -98,16 +100,16 @@ use warnings;
 		return $self->{record};
 	}
 
-	sub branchValues {
+	# Return the MAC prefix as an array of bytes, used to route this leaf into the tree
+	sub MACPrefix {
 		my $self = shift;
-		return $self->{branchValues};
+		return $self->{MACPrefix};
 	}
 }
 
-
 package ManufTreeBuilder;
-
 use strict;
+use warnings;
 
 sub new {
 	my ($class) = @_;
@@ -122,11 +124,9 @@ sub new {
 sub insert {
 	my ($self, $record) = @_;
 
-	$self->_insertString($record->{longDescription}) if($record->{longDescription});
 	$self->_insertString($record->{description}) if($record->{description});
 
-	# $self->_insert($record->{MACPrefix}, $record, $self->{root});
-	my $leafNode = new LeafNode($record, $record->{MACPrefix});
+	my $leafNode = new LeafNode($record);
 	$self->{leafCount} += $self->{root}->insert($leafNode);
 }
 

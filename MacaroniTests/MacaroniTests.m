@@ -23,7 +23,15 @@
     XCTAssertNotNil(manuf);
     XCTAssertEqualObjects(manuf.manuName, @"Next");
     XCTAssertEqualObjects(manuf.manuDescription, @"NEXT, INC.");
+}
 
+- (void)test48BytePrefix {
+    NSData *someMac = [[NSData alloc] initWithBytes:(unsigned char[]){00, 0xE0, 0x2B, 00, 00, 00} length:6];
+
+    MCEtherManufacturer *manuf = [MCEtherManufacturer findManufacturer:someMac];
+    XCTAssertNotNil(manuf);
+    XCTAssertEqualObjects(manuf.manuName, @"Extreme-EDP");
+    XCTAssertEqualObjects(manuf.manuDescription, nil);
 }
 
 @end

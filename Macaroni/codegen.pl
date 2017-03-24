@@ -44,7 +44,7 @@ while(<$fh>) {
 
 		my $macMask = $qualifier ? $qualifier : (8 * scalar(@macBytes));
 
-	 	print sprintf("MANUF((%s), %d, %d, %s, %s),\n", 
+	 	print sprintf("MANUF((%s), %d, %d, %s, %s)\n", 
 	 		toArrayLiteral(@macBytes), 
 	 		scalar(@macBytes),
 	 		$macMask, 

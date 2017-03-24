@@ -19,6 +19,11 @@
 		ACBC771B1C976A7600BBCE18 /* MCMacaroni.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC77111C976A7600BBCE18 /* MCMacaroni.m */; };
 		ACBC771C1C976A7600BBCE18 /* NSData+MACAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = ACBC77121C976A7600BBCE18 /* NSData+MACAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ACBC771D1C976A7600BBCE18 /* NSData+MACAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBC77131C976A7600BBCE18 /* NSData+MACAddress.m */; };
+		ACF90BE31E30ACE900390063 /* walk.c in Sources */ = {isa = PBXBuildFile; fileRef = ACF90BDF1E30ACE900390063 /* walk.c */; };
+		ACF90BE41E30ACE900390063 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = ACF90BE01E30ACE900390063 /* types.h */; };
+		ACF90BE61E30ACE900390063 /* c.c in Sources */ = {isa = PBXBuildFile; fileRef = ACF90BE21E30ACE900390063 /* c.c */; };
+		ACF90BF01E30ADF600390063 /* walk.c in Sources */ = {isa = PBXBuildFile; fileRef = ACF90BDF1E30ACE900390063 /* walk.c */; };
+		ACF90BF11E30ADF600390063 /* c.c in Sources */ = {isa = PBXBuildFile; fileRef = ACF90BE21E30ACE900390063 /* c.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +35,18 @@
 			remoteInfo = Macaroni;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ACF90BE91E30ADE700390063 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AC00055A1D1DE2390051E07B /* manuf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manuf.txt; sourceTree = "<group>"; };
@@ -47,6 +64,10 @@
 		ACBC77111C976A7600BBCE18 /* MCMacaroni.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMacaroni.m; sourceTree = "<group>"; };
 		ACBC77121C976A7600BBCE18 /* NSData+MACAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MACAddress.h"; sourceTree = "<group>"; };
 		ACBC77131C976A7600BBCE18 /* NSData+MACAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MACAddress.m"; sourceTree = "<group>"; };
+		ACF90BDF1E30ACE900390063 /* walk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = walk.c; sourceTree = "<group>"; };
+		ACF90BE01E30ACE900390063 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		ACF90BE21E30ACE900390063 /* c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = c.c; sourceTree = "<group>"; };
+		ACF90BEB1E30ADE700390063 /* walk */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = walk; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,14 +86,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ACF90BE81E30ADE700390063 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		ACBC76E61C976A4300BBCE18 = {
 			isa = PBXGroup;
 			children = (
+				ACF90BDE1E30ACCC00390063 /* C */,
 				ACBC76F21C976A4300BBCE18 /* Macaroni */,
 				ACBC76FE1C976A4400BBCE18 /* MacaroniTests */,
+				ACF90BEC1E30ADE700390063 /* walk */,
 				ACBC76F11C976A4300BBCE18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +112,7 @@
 			children = (
 				ACBC76F01C976A4300BBCE18 /* Macaroni.framework */,
 				ACBC76FA1C976A4400BBCE18 /* MacaroniTests.xctest */,
+				ACF90BEB1E30ADE700390063 /* walk */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +144,23 @@
 			path = MacaroniTests;
 			sourceTree = "<group>";
 		};
+		ACF90BDE1E30ACCC00390063 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				ACF90BDF1E30ACE900390063 /* walk.c */,
+				ACF90BE01E30ACE900390063 /* types.h */,
+				ACF90BE21E30ACE900390063 /* c.c */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		ACF90BEC1E30ADE700390063 /* walk */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = walk;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -120,6 +168,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF90BE41E30ACE900390063 /* types.h in Headers */,
 				ACBC771A1C976A7600BBCE18 /* MCMacaroni.h in Headers */,
 				ACBC771C1C976A7600BBCE18 /* NSData+MACAddress.h in Headers */,
 				ACBC77181C976A7600BBCE18 /* MCEtherManufacturer.h in Headers */,
@@ -168,6 +217,23 @@
 			productReference = ACBC76FA1C976A4400BBCE18 /* MacaroniTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		ACF90BEA1E30ADE700390063 /* walk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACF90BED1E30ADE700390063 /* Build configuration list for PBXNativeTarget "walk" */;
+			buildPhases = (
+				ACF90BE71E30ADE700390063 /* Sources */,
+				ACF90BE81E30ADE700390063 /* Frameworks */,
+				ACF90BE91E30ADE700390063 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = walk;
+			productName = walk;
+			productReference = ACF90BEB1E30ADE700390063 /* walk */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -182,6 +248,11 @@
 					};
 					ACBC76F91C976A4400BBCE18 = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					ACF90BEA1E30ADE700390063 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3ZNCDCGSPD;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -199,6 +270,7 @@
 			targets = (
 				ACBC76EF1C976A4300BBCE18 /* Macaroni */,
 				ACBC76F91C976A4400BBCE18 /* MacaroniTests */,
+				ACF90BEA1E30ADE700390063 /* walk */,
 			);
 		};
 /* End PBXProject section */
@@ -243,7 +315,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF90BE31E30ACE900390063 /* walk.c in Sources */,
 				ACBC771B1C976A7600BBCE18 /* MCMacaroni.m in Sources */,
+				ACF90BE61E30ACE900390063 /* c.c in Sources */,
 				ACBC77161C976A7600BBCE18 /* MCCacheEntry.m in Sources */,
 				ACBC77191C976A7600BBCE18 /* MCEtherManufacturer.m in Sources */,
 				ACBC771D1C976A7600BBCE18 /* NSData+MACAddress.m in Sources */,
@@ -255,6 +329,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACBC77001C976A4400BBCE18 /* MacaroniTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACF90BE71E30ADE700390063 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACF90BF01E30ADF600390063 /* walk.c in Sources */,
+				ACF90BF11E30ADF600390063 /* c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +495,32 @@
 			};
 			name = Release;
 		};
+		ACF90BEE1E30ADE700390063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 3ZNCDCGSPD;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ACF90BEF1E30ADE700390063 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 3ZNCDCGSPD;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -441,6 +550,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		ACF90BED1E30ADE700390063 /* Build configuration list for PBXNativeTarget "walk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACF90BEE1E30ADE700390063 /* Debug */,
+				ACF90BEF1E30ADE700390063 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

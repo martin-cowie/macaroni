@@ -20,7 +20,7 @@ my $parser = new ManufParser($fh);
 my @records = $parser->parse();
 close($fh);
 
-print STDERR PUSHCOLOR BRIGHT_GREEN "loaded ", scalar(@records), " records\n";
+print STDERR PUSHCOLOR BRIGHT_GREEN "Loaded ", scalar(@records), " records\n";
 
 my $treeBuilder = new ManufTreeBuilder();
 foreach my $record (@records) {
@@ -36,19 +36,20 @@ for(my $i=0; $i< scalar(keys %stringsByIndex); $i++) {
 }
 
 print "#include \"macaroni.h\"\n\n";
+print "#include \"macaroni_internal.h\"\n\n";
 print "const char * const stringTable[] = {", join(",\n\t\t", @stringTable), "};\n\n";
 
 # Pring the leaf nodes
 sub mapTree {
 	my ($node, $leafFunc, $branchFunc) = @_;
 
-	if (ref($node) eq 'LeafNode') {
-		&$leafFunc($node);
-	} elsif (ref($node) eq 'BranchNode') {
+	if ($node->hasBranches) {
 		while (my ($key, $value) = each %{$node->branches}) {
 			mapTree($value, $leafFunc, $branchFunc);
 		}
 		&$branchFunc($node);
+	} else {
+		&$leafFunc($node);
 	}
 }
 
@@ -61,21 +62,21 @@ mapTree($treeBuilder->root(), sub {
 			$node->record->{lineNumber}, 
 			$stringsByName->{$node->record->{description}}
 		);
-		my $longDescriptionIndex = (defined $node->record->{longDescription}) ? $stringsByName->{$node->record->{longDescription}} : -1 ;
+		my $descriptionIndex = $stringsByName->{$node->record->{description}} ;
 		my $nodeNumber = $node->nodeNumber;
+
+		my $mappingString = $node->record->{mapping};
 		$leafCount++;
 
 		print <<FIN;
+/* $mappingString */
 static type_node_t node_$nodeNumber = {
 	.node_type = leaf, 
 	.value = {
 		.leaf_node = {
-			.line_number = $lineNumber, .short_description = $shortDescriptionIndex, .long_description = $longDescriptionIndex
+			.description = $descriptionIndex,
 		}
-	},
-#	if(DEBUG)
-	.id = $nodeNumber
-#	endif
+	}
 };
 
 FIN
@@ -90,8 +91,6 @@ FIN
 		if ($node->isContiguous) {
 			my $firstKey = $branchKeys[0];
 			my $lastKey = sprintf("%02X", $lastIndex);
-
-
 			my $valuesSource = join(", ", map {"&node_" . $node->branches->{$_}->nodeNumber} @branchKeys);
 
 			print <<FIN;
@@ -104,35 +103,25 @@ static const type_node_t node_$nodeNumber = {
 			.last_index = 0x${lastKey},
 			.values = (const struct type_node_t **)&values_${nodeNumber}
 		}
-	},
-#	if(DEBUG)
-	.id = $nodeNumber
-#	endif
+	}
 };
 
 FIN
 		} else {
-			# if(@branchKeys > 10) {
-			# 	print STDERR "Node $nodeNumber has " . @branchKeys . " elements\n";
-			# }
-			
 			my $tableSource = join(", ", map {
 				"{0x$_, &node_" . $node->branches->{$_}->nodeNumber . "}"
 			} @branchKeys );
-			print "\nstatic const index_elem_t table_${nodeNumber}[] = {$tableSource};\n";
+			print "\nstatic const bytemap_elem_t table_${nodeNumber}[] = {$tableSource};\n";
 
 			print <<FIN;
 static const type_node_t node_$nodeNumber = {
-	.node_type = index_map, 
+	.node_type = byte_map, 
 	.value = {
-		.index_node = {
+		.bytemap_node = {
 			.last_index = $lastIndex,
 			.table = table_$nodeNumber
 		}
-	},
-#	if(DEBUG)
-	.id = $nodeNumber
-#	endif
+	}
 };
 
 FIN
