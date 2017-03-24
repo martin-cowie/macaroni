@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.1)
 project (Macaroni)
 include(CTest)
 
@@ -15,6 +15,7 @@ add_library(macaroni SHARED
 set_property(TARGET macaroni PROPERTY C_STANDARD 99)
 
 add_executable(mlookup mlookup.c)
+set_property(TARGET mlookup PROPERTY C_STANDARD 99)
 target_link_libraries(mlookup macaroni)
 
 add_executable(tests test_all.c)
