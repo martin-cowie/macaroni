@@ -1,4 +1,9 @@
-language: objective-c
-xcode_project: Macaroni.xcodeproj
-xcode_scheme: Macaroni
-osx_image: xcode7.3
+language: C
+compiler:
+  - cc
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+script:
+  - make clean all test

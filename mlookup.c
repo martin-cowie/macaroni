@@ -24,7 +24,7 @@ static int parseMAC(const char *macStr, unsigned char result[6]) {
 
 int main(int argc, char *argv[]) {
 	if(argc < 2) {
-		fprintf(stderr, "wrong # args, try %s <mac-address> [<mac-address> n]\n", argv[0]);
+		fprintf(stderr, "wrong # args, try %s <mac-address> [<mac-address> ...]\n", argv[0]);
 		exit(1);
 	}
 
