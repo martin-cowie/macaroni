@@ -2,12 +2,15 @@ language: C
 compiler:
   - gcc
 before_script:
-  - sh ./setup-travis.sh
-  - sudo apt-get update -qq
-  - sudo apt-get install cmake
   - mkdir build
   - cd build
   - cmake ..
 script:
   - make clean all test
-sudo: required
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports # cmake 3.2.3
+    packages:
+      - cmake
+      - cmake-data
