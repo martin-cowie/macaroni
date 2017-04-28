@@ -16,7 +16,7 @@ Resolve a MAC addresse to its manufacturer.
 # Compact.
 
 * 2.8MB on 32bit Linux and 3.8MB on 64bit MacOS.
-* Strings are de-deplicated, and data structures are packed.
+* Strings are de-duplicated, and data structures are packed.
 
  
 ---
