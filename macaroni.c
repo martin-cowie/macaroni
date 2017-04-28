@@ -10,17 +10,15 @@
     memcpy(RESULT, PATH, LEN); \
     RESULT[LEN] = MACBYTE;
 
-int macwalk(node_func_t node_func) {
-    return _macwalk(root_node, node_func, NULL, 0);
-}
 
-int _macwalk(const type_node_t *node, node_func_t node_func, unsigned char *path, int pathLen) {
-
+int _macwalk(const type_node_t *node, row_func_t node_func, unsigned char *path, int pathLen) {
     int result = 0;
     switch(node->node_type) {
-        case leaf:
-            node_func(&node->value.leaf_node, path, pathLen);
+        case leaf: {
+            const char *description = stringTable[node->value.leaf_node.description];
+            node_func(description, path, pathLen);
             return result+1;
+        }
 
         case byte_map:
             for(int i=0; i< node->value.bytemap_node.last_index +1; i++) {
@@ -53,6 +51,11 @@ int _macwalk(const type_node_t *node, node_func_t node_func, unsigned char *path
     }
 }
 
+int macwalk(row_func_t node_func) {
+    return _macwalk(root_node, node_func, NULL, 0);
+}
+
+
 static const unsigned char bsearchThreshold = 10;
 
 static int compareElems(const void *keyPtr, const void *elemPtr) {
@@ -63,7 +66,11 @@ static int compareElems(const void *keyPtr, const void *elemPtr) {
 }
 
 const leaf_node_t*
-_macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigned char macBytesLen) {
+_macsearch(const type_node_t *node, const unsigned char *macBytes, const char macBytesLen) {
+
+    if(0 > macBytesLen) {
+        return NULL;
+    }
 
     switch(node->node_type) {
         case leaf:
@@ -94,8 +101,6 @@ _macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigne
                 return NULL;
             }
         }
-
-        //Also .. tests
 
         case bits_map: {
             /* iterate across the map, plain & simple */
@@ -132,7 +137,6 @@ _macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigne
         }
 
         default:
-            //FIXME: something better
             fprintf(stderr, "Unexpected node_type=%02X\n", node->node_type);
             abort();
     }
@@ -141,6 +145,6 @@ _macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigne
 const char *
 macsearch(const unsigned char *macBytes, const unsigned char macBytesLen) {
 	const leaf_node_t *node = _macsearch(root_node, macBytes, macBytesLen);
-    return node == NULL ? NULL : stringTable[node->description];
+    return (node != NULL /*&& node->node_type == leaf */) ? stringTable[node->description] : NULL;
 }
 

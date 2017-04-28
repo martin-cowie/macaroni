@@ -1,6 +1,8 @@
 #ifndef _MACARONI_INTERNAL_H
 #define _MACARONI_INTERNAL_H 1
 
+#define PACK __attribute__((packed))
+
 struct type_node_t;
 
 /* Contiguous nodes */
@@ -33,6 +35,11 @@ typedef struct PACK {
 	const bitsmap_elem_t* table;
 } bitsmap_node_t;
 
+/* Leaf nodes */
+typedef struct PACK {
+	short unsigned int description;
+} leaf_node_t;
+
 /* Type node */
 typedef struct PACK type_node_t {
 	enum {byte_map, bits_map, contiguous, leaf} node_type;
@@ -49,7 +56,7 @@ extern const type_node_t *root_node;
 extern const char * const stringTable[];
 
 /* Exports from macaroni.h */
-extern const leaf_node_t* _macsearch(const type_node_t *node, const unsigned char *macBytes, const unsigned char macBytesLen);
-extern int _macwalk(const type_node_t *node, node_func_t node_func, unsigned char *path, int pathLen);
+extern const leaf_node_t* _macsearch(const type_node_t *node, const unsigned char *macBytes, const char macBytesLen);
+extern int _macwalk(const type_node_t *node, row_func_t row_func, unsigned char *path, int pathLen);
 
 #endif

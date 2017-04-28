@@ -1,0 +1,64 @@
+.TH MACWALK 3
+
+.SH NAME
+macwalk
+
+.SH LIBRARY
+macaroni \- walk the table of MAC addresses.
+
+.SH SYNOPSIS
+
+typedef void (*
+.B row_func_t
+)(const char *
+.I manufacturer
+, unsigned char *
+.I mac
+, unsigned char 
+.I macLen
+);
+
+extern int 
+.B macwalk
+(row_func_t 
+.I 
+row_func);
+
+.SH DESCRIPTION
+
+Walk the table of MAC addresses, passing each row to a callback.
+
+.SH RETURN VALUES
+
+The number of rows in the table.
+
+.SH EXAMPLE
+.PP
+.nf
+.RS
+#include <stdio.h>
+#include <string.h>
+#include "macaroni.h"
+
+static void test_leaf(const char *manufacturer, unsigned char *mac, unsigned char macLen) {
+	if(NULL != strstr(manufacturer, "Rand")) {
+		printf("%02X:%02X:%02X => %s\n", mac[0], mac[1], mac[2], manufacturer);
+	}
+}
+
+int main(int argc, char *argv[]) {
+	const int leafCount = macwalk(test_leaf);
+	printf("table size = %d\\n", leafCount);
+}
+.RE
+.fi
+.PP
+Outputs
+.PP
+.nf
+.RS
+90:F4:C1 => Rand McNally
+table size = 28372
+.RE
+.fi
+.PP

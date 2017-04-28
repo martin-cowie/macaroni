@@ -31,19 +31,100 @@ void print_leaf(const leaf_node_t *leaf, unsigned char *mac, unsigned char macLe
 		stringTable[leaf->description]);
 }
 
-static void test_leaf(const leaf_node_t *leaf, unsigned char *mac, unsigned char macLen) {
+static void test_leaf(const char *manufacturer, unsigned char *mac, unsigned char macLen) {
 	//Search for the MAC given, and match the results agains the given leaf
 
 	char macStr[macLen*3];
 	renderMac(mac, macLen, macStr, 40);
 
 	const char *quary = macsearch(mac, macLen);
-	if(quary == stringTable[leaf->description]) {
+
+	if(quary != NULL && strcmp(quary, manufacturer) == 0) {
 		printf("%s, \"%s\" - PASS\n", macStr, quary);
 	} else {
 		printf("%s returns %p, FAIL\n", macStr, quary);
 		failCount++;
 	}
+}
+
+static int test_partial_match() {
+	/* The MAC of a raspberry Pi */
+	const unsigned char mac[6] = {0xb8, 0x27, 0xeb, 0x9a, 0x47, 0x11};
+
+	//1. Should find it 
+	const char *result = NULL;
+	if(NULL == (result = macsearch(mac, 6))) {
+		return 1;
+	}
+	printf("Found non NULL value: %s\n", result);
+
+	//2. Should NOT find it, 2 bytes is a partial match
+	if(NULL != (result = macsearch(mac, 2))) {
+		printf("Found non NULL value: %s\n", result);
+		return 1;
+	}
+	printf("Found nothing as expected\n");
+
+	return 0;
+}
+
+static int test_bits_maps() {
+	// Build a tree containing a bits-map section and ensure everything can be found
+	const type_node_t node0 = {
+		.node_type=leaf, .value={
+			.leaf_node={0}
+		}
+	};
+	const type_node_t node1 = {
+		.node_type=leaf, .value={
+			.leaf_node={1}
+		}
+	};
+	const type_node_t node2 = {
+		.node_type=leaf, .value={
+			.leaf_node={2}
+		}
+	};
+	const type_node_t node3 = {
+		.node_type=leaf, .value={
+			.leaf_node={3}
+		}
+	};
+
+	const bitsmap_elem_t table[] = {
+		{.bits = 0x40, .bitslen = 4, .value=&node0},
+		{.bits = 0x50, .bitslen = 4, .value=&node1},
+		{.bits = 0x60, .bitslen = 4, .value=&node2},
+		{.bits = 0x70, .bitslen = 4, .value=&node3}
+	};
+	const bitsmap_node_t bitsmap_node = {.last_index = 4, .table = table};
+	const type_node_t type_node = {.node_type = bits_map, .value={.bitsmap_node=bitsmap_node}};
+
+	const unsigned char path0[] = {0x41, 1, 2};
+	const leaf_node_t *leafNode = _macsearch(&type_node, path0, 3);
+	if(leafNode == NULL) {
+		return 1;
+	}
+
+	const unsigned char path1[] = {0x51, 5, 6};
+	leafNode = _macsearch(&type_node, path1, 3);
+	if(leafNode == NULL) {
+		return 1;
+	}
+
+	const unsigned char path2[] = {0x61};
+	leafNode = _macsearch(&type_node, path2, 1);
+	if(leafNode == NULL) {
+		return 1;
+	}
+
+	const unsigned char path3[] = {0x71};
+	leafNode = _macsearch(&type_node, path3, 1);
+	if(leafNode == NULL) {
+		return 1;
+	}
+
+	return 0;
 }
 
 int main(int argc, char **argv) {
@@ -63,62 +144,11 @@ int main(int argc, char **argv) {
 	}
 
 	if(strcmp(testName,"test_bits_maps") == 0) {
-		// Build a tree containing a bits-map section and ensure everything can be found
-		type_node_t node0 = {
-			.node_type=leaf, .value={
-				.leaf_node={0}
-			}
-		};
-		type_node_t node1 = {
-			.node_type=leaf, .value={
-				.leaf_node={1}
-			}
-		};
-		type_node_t node2 = {
-			.node_type=leaf, .value={
-				.leaf_node={2}
-			}
-		};
-		type_node_t node3 = {
-			.node_type=leaf, .value={
-				.leaf_node={3}
-			}
-		};
+		return test_bits_maps();
+	}
 
-		bitsmap_elem_t table[] = {
-			{.bits = 0x40, .bitslen = 4, .value=&node0},
-			{.bits = 0x50, .bitslen = 4, .value=&node1},
-			{.bits = 0x60, .bitslen = 4, .value=&node2},
-			{.bits = 0x70, .bitslen = 4, .value=&node3}
-		};
-		bitsmap_node_t bitsmap_node = {.last_index = 4, .table = table};
-		type_node_t type_node = {.node_type = bits_map, .value={.bitsmap_node=bitsmap_node}};
-
-		const unsigned char path0[] = {0x41, 1, 2};
-		const leaf_node_t *leafNode = _macsearch(&type_node, path0, 3);
-		if(leafNode == NULL) {
-			return 1;
-		}
-
-		const unsigned char path1[] = {0x51, 5, 6};
-		leafNode = _macsearch(&type_node, path1, 3);
-		if(leafNode == NULL) {
-			return 1;
-		}
-
-		const unsigned char path2[] = {0x61};
-		leafNode = _macsearch(&type_node, path2, 1);
-		if(leafNode == NULL) {
-			return 1;
-		}
-
-		const unsigned char path3[] = {0x71};
-		leafNode = _macsearch(&type_node, path3, 1);
-		if(leafNode == NULL) {
-			return 1;
-		}
-
-		return 0;
+	if(strcmp(testName, "test_partial_match") == 0) {
+		return test_partial_match();
 	}
 
 	fprintf(stderr, "Unknown test \"%s\"\n", testName);

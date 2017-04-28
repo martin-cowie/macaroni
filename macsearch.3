@@ -1,0 +1,38 @@
+.TH MACSEARCH 3
+
+.SH NAME
+macsearch
+
+.SH LIBRARY
+macaroni \- resolve a MAC address to the name of its manufacturer.
+
+.SH SYNOPSIS
+const char *
+.B macsearch
+(const unsigned char *
+.I macBytes
+, const unsigned char 
+.I macBytesLen
+);
+
+.SH DESCRIPTION
+
+Find the name of the manufacturer of a given MAC address. Many MAC addresses contain a 3 byte prefix that 
+uniquely identifies the manufacturer, though this is not universaly true therefore the complete MAC address 
+must be supplied, which is most often 6 bytes long.
+
+.SH RETURN VALUES
+
+NULL if there is no match or a partial match, otherwise a NUL terminated string of the manufacturer.
+
+.SH EXAMPLE
+.PP
+.nf
+.RS
+const unsigned char buff[6] = {0xb8, 0x27, 0xeb, 0x9a, 0x47, 0x11};
+const char *manufacturer = macsearch(buff, 6);
+printf("%s\\n", manufacturer);
+.RE
+.fi
+.PP
+Outputs "Raspberry Pi Foundation"
