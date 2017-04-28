@@ -9,14 +9,16 @@
 #include <string.h>
 #include "macaroni.h"
 
-static int parseMAC(const char *macStr, unsigned char result[6]) {
-	int values[6];
+#define MAC_SIZE 6
+
+static int parseMAC(const char *macStr, unsigned char result[MAC_SIZE]) {
+	int values[MAC_SIZE];
 	if (6 != sscanf(macStr, "%x:%x:%x:%x:%x:%x",
 		&values[0], &values[1], &values[2],
 		&values[3], &values[4], &values[5])) {
 		return -1;
 	}
-	for (int i = 0; i < 6; ++i ) {
+	for (int i = 0; i < MAC_SIZE; ++i ) {
 		result[i] = (unsigned char) values[i];
 	}
 	return 0;
@@ -35,7 +37,7 @@ int main(int argc, char *argv[]) {
 			fprintf(stderr, "Cannot parse MAC '%s'\n", argv[i]);
 			continue;
 		}
-		const char *manufacturer = macsearch(buff, n);
+		const char *manufacturer = macsearch(buff, MAC_SIZE);
 		if (manufacturer == NULL) {
 			fprintf(stderr, "Cannot resolve manufacturer from MAC '%s'\n", argv[i]);
 			continue;
