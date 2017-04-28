@@ -7,8 +7,9 @@ Resolve a MAC addresse to its manufacturer.
 ---
 # Quick.
 
-* No setup time: all data structures are staticly held in the BSS.
-* The table is stored as a tree where each branch uses the most suitable data structure.
+* **No setup time**: all data structures are staticly held in the BSS.
+* The table is stored as a tree
+* Each branch uses the most suitable data structure.
 
 ---
 
@@ -29,5 +30,5 @@ Resolve a MAC addresse to its manufacturer.
 
 # Okay, .. but why?
 
-* Sometimes knowing that you're communicating with the hardware you should be is useful.
+* Sometimes it is useful to be certain that you're communicating with the intended hardware.
 

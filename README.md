@@ -1,5 +1,5 @@
 # macaroni
-Resolves MAC addresses to their manufacturer
+Resolve MAC addresses to their manufacturer. See [the pitch](https://gitpitch.com/martin-cowie/macaroni).
 
 ## Platforms
 
