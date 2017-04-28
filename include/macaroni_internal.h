@@ -60,3 +60,4 @@ extern const leaf_node_t* _macsearch(const type_node_t *node, const unsigned cha
 extern int _macwalk(const type_node_t *node, row_func_t row_func, unsigned char *path, int pathLen);
 
 #endif
+
