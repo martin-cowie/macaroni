@@ -66,7 +66,7 @@ static int compareElems(const void *keyPtr, const void *elemPtr) {
 }
 
 const leaf_node_t*
-_macsearch(const type_node_t *node, const unsigned char *macBytes, const char macBytesLen) {
+_macsearch(const type_node_t *node, const unsigned char *macBytes, const signed char macBytesLen) {
 
     if(0 > macBytesLen) {
         return NULL;

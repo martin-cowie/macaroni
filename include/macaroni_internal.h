@@ -56,7 +56,7 @@ extern const type_node_t *root_node;
 extern const char * const stringTable[];
 
 /* Exports from macaroni.h */
-extern const leaf_node_t* _macsearch(const type_node_t *node, const unsigned char *macBytes, const char macBytesLen);
+extern const leaf_node_t* _macsearch(const type_node_t *node, const unsigned char *macBytes, const signed char macBytesLen);
 extern int _macwalk(const type_node_t *node, row_func_t row_func, unsigned char *path, int pathLen);
 
 #endif
