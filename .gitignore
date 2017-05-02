@@ -4,6 +4,8 @@
 
 ## Build generated
 build/
+Release/
+Debug/
 DerivedData/
 
 ## Various settings

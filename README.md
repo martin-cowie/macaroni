@@ -3,7 +3,13 @@ Resolve MAC addresses to their manufacturer. See [the pitch](https://gitpitch.co
 
 ## Platforms
 
-MacOS v10.11
+* MacOS v10.11, v10,12
+* Linux v2.6 and later
+
+## Building
+
+    mkdir build && cd build && cmake .. && make all test
+
 
 ## Build status
 
