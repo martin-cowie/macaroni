@@ -129,6 +129,8 @@ static int test_bits_maps() {
 
 int main(int argc, char **argv) {
 
+	fprintf(stderr, "leaf=%ld\n", sizeof(leaf));
+
 	if(argc < 2) {
 		fprintf(stderr, "wrong # args, try %s test-name\n", argv[0]);
 		return 1;

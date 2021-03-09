@@ -3,6 +3,8 @@ use strict;
 use Getopt::Std;
 use Term::ANSIColor 2.00 qw(:pushpop);
 use Scalar::Util qw(blessed);
+use File::Basename;
+use lib dirname (__FILE__);
 use ManufParser;
 use ManufTreeBuilder;
 
@@ -59,7 +61,7 @@ my $leafCount = 0;
 mapTree($treeBuilder->root(), sub {
 		my($node) = @_;
 		my($lineNumber, $shortDescriptionIndex) = (
-			$node->record->{lineNumber}, 
+			$node->record->{lineNumber},
 			$stringsByName->{$node->record->{description}}
 		);
 		my $descriptionIndex = $stringsByName->{$node->record->{description}} ;
@@ -71,7 +73,7 @@ mapTree($treeBuilder->root(), sub {
 		print <<FIN;
 /* $mappingString */
 static type_node_t node_$nodeNumber = {
-	.node_type = leaf, 
+	.node_type = leaf,
 	.value = {
 		.leaf_node = {
 			.description = $descriptionIndex,
@@ -96,7 +98,7 @@ FIN
 			print <<FIN;
 static const type_node_t *values_${nodeNumber}[] = {$valuesSource};
 static const type_node_t node_$nodeNumber = {
-	.node_type = contiguous, 
+	.node_type = contiguous,
 	.value = {
 		.contiguous_node = {
 			.first_index = 0x${firstKey},
@@ -115,7 +117,7 @@ FIN
 
 			print <<FIN;
 static const type_node_t node_$nodeNumber = {
-	.node_type = byte_map, 
+	.node_type = byte_map,
 	.value = {
 		.bytemap_node = {
 			.last_index = $lastIndex,
@@ -133,4 +135,3 @@ print "const type_node_t *root_node = &node_0;\n";
 
 print STDERR "Counted $leafCount leaves\n";
 print STDERR RESET "";
-
